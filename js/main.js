@@ -23,7 +23,25 @@ var Person = Backbone.Model.extend({
 });
 
 var PersonView = Backbone.View.extend({
+
+	template: _.template('<strong><%= name %></strong> ( <%= age %> )'),
+
+	initialize: function () {
+		console.log(this.model);
+	},
+
 	tagName: 'li',
 	className: 'person',
-	id: 'some-person'
+	id: 'some-person',
+
+	render: function() {
+		// antipattern, bad practice
+		// this.$el.html( this.model.get('name') + ' (' + this.model.get('age') + ')' );
+
+		// good practice
+		this.$el.html( this.template( this.model.toJSON() ) );
+	}
 });
+
+var person = new Person();
+var personView = new PersonView({model: person});
