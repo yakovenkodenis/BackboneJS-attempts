@@ -21,3 +21,7 @@ var Person = Backbone.Model.extend({
 		return this.get('name') + " is walking.";
 	}
 });
+
+var PersonView = Backbone.View.extend({
+	
+});
