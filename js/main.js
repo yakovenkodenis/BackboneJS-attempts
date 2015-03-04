@@ -11,6 +11,10 @@ var Person = Backbone.Model.extend({
 		if( attrs.age <= 0 ) {
 			return 'The age should be positive!';
 		}
+
+		if( ! attrs.name ) {
+			return "The name is compulsory!";
+		}
 	},
 
 	walk: function() {
