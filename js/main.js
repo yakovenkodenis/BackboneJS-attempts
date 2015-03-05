@@ -41,8 +41,10 @@ var PeopleView = Backbone.View.extend({
 		this.collection.each(function(person) {
 			var personView = new PersonView({model: person});
 
-			this.$el.append(personView.el);
+			this.$el.append(personView.render().el);
 		}, this);
+
+		return this;
 	}
 });
 
@@ -66,6 +68,8 @@ var PersonView = Backbone.View.extend({
 		// good practice
 		var template = _.template( $(this.template).html() )
 		this.$el.html( template( this.model.toJSON() ) );
+
+		return this;
 	}
 });
 
@@ -94,3 +98,5 @@ var peopleCollection = new PeopleCollection([
 ]);
 
 var peopleView = new PeopleView({collection: peopleCollection});
+
+$(document.body).append(peopleView.render().el);
