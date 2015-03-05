@@ -22,6 +22,14 @@ var Person = Backbone.Model.extend({
 	}
 });
 
+
+
+var PeopleCollection = Backbone.Collection.extend({
+	model: Person
+});
+
+
+
 var PersonView = Backbone.View.extend({
 
 	template: '#person-id',
@@ -49,3 +57,9 @@ var personView = new PersonView({model: person});
 
 var person2 = new Person({name: "Andrey", age: 25});
 var personView2 = new PersonView({model: person2});
+
+
+var peopleCollection = new PeopleCollection();
+
+peopleCollection.add(person);
+peopleCollection.add(person2);
