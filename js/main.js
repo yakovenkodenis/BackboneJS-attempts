@@ -24,10 +24,10 @@ var Person = Backbone.Model.extend({
 
 var PersonView = Backbone.View.extend({
 
-	template: _.template('<strong><%= name %></strong> ( <%= age %> )'),
+	template: _.template( $('#person-id').html() ),
 
 	initialize: function () {
-		console.log(this.model);
+		this.render();
 	},
 
 	tagName: 'li',
