@@ -30,6 +30,23 @@ var PeopleCollection = Backbone.Collection.extend({
 
 
 
+var PeopleView = Backbone.View.extend({
+	tagName: 'ul',
+
+	initialize: function () {
+		console.log(this.collection);
+	},
+
+	render: function() {
+		this.collection.each(function(person) {
+			var personView = new PersonView({model: person});
+
+			this.$el.append(personView.el);
+		}, this);
+	}
+});
+
+
 var PersonView = Backbone.View.extend({
 
 	template: '#person-id',
@@ -59,7 +76,21 @@ var person2 = new Person({name: "Andrey", age: 25});
 var personView2 = new PersonView({model: person2});
 
 
-var peopleCollection = new PeopleCollection();
+var peopleCollection = new PeopleCollection([
+	{
+		name: "John",
+		age: 19,
+		job: 'cleaner'
+	},
+	{
+		name: "Emma",
+		age: 21,
+		job: "teacher"
+	},
+	{
+		name: "Paul",
+		age: 35
+	}
+]);
 
-peopleCollection.add(person);
-peopleCollection.add(person2);
+var peopleView = new PeopleView({collection: peopleCollection});
